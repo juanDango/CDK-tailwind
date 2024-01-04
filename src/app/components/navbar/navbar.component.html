@@ -14,6 +14,9 @@
           <li>
             <a
               class="block py-3 px-4 text-white"
+              (click)="changeIsOpenBody()"
+              cdkOverlayOrigin
+              #bodyOverlay="cdkOverlayOrigin"
               >Workspaces</a
             >
           </li>
@@ -29,7 +32,13 @@
         </ul>
       </div>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center gap-x-2">
+      <button class="text-white" type="button">
+        <fa-icon [icon]="faBell"></fa-icon>
+      </button>
+      <button class="text-white" type="button">
+        <fa-icon [icon]="faInfoCircle"></fa-icon>
+      </button>
       <button
         type="button"
         class="flex rounded-full"
@@ -120,4 +129,30 @@
     </li>
   </ul>
 </div>
+</ng-template>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="bodyOverlay"
+  [cdkConnectedOverlayOpen]="isOpenBody()">
+  <div
+    class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+    >
+    <div class="py-3 px-4 flex justify-between">
+      <ul class="py-1" >
+        <li>
+          <a
+            href="#"
+            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+            >Profile</a
+          >
+          <a
+          href="#"
+          class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >Profilesito</a
+        >
+        </li>
+      </ul>
+    </div>
+    </div>
 </ng-template>
