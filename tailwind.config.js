@@ -9,6 +9,8 @@ module.exports = {
     colors: {
       success: colors.green,
       primary: colors.blue,
+      red: colors.red,
+      white: colors.white
     },
     extend: {},
   },
