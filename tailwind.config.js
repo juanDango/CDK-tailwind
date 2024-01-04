@@ -10,7 +10,9 @@ module.exports = {
       success: colors.green,
       primary: colors.blue,
       red: colors.red,
-      white: colors.white
+      white: '#ffffff',
+      sky: colors.sky,
+      gray: colors.gray
     },
     extend: {},
   },

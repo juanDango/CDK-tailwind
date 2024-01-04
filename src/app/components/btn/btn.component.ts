@@ -24,7 +24,10 @@ export class BtnComponent {
       'focus:ring-primary-300': this.color==='primary',
       'bg-red-700': this.color==='red',
       'hover:bg-red-800': this.color==='red',
-      'focus:ring-red-300': this.color==='red'
+      'focus:ring-red-300': this.color==='red',
+      'bg-sky-700': this.color==='sky',
+      'hover:bg-sky-800': this.color==='sky',
+      'focus:ring-sky-300': this.color==='sky'
     }
   }
 }
