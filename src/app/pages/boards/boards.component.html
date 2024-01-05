@@ -70,6 +70,30 @@
         </div>
       </cdk-accordion-item>
     </cdk-accordion>
+
+    <cdk-accordion>
+      @for (item of items; track item) {
+        <cdk-accordion-item #accordionItem="cdkAccordionItem">
+          <button class="w-full text-left flex justify-between pl-6 pr-2 py-2" type="button" (click)="accordionItem.toggle()">
+            {{ item.label }}
+            <fa-icon [icon]="accordionMenu.expanded?faAngleUp:faAngleDown"></fa-icon>
+          </button>
+          <hr />
+          <div
+            class="px-6 py-1 mb-2"
+           [style.display]="accordionItem.expanded?'':'none'">
+            <ul>
+              @for(i of item.items; track i){
+                <li class="py-1">
+                  {{i.label}}
+                </li>
+                <hr />
+              }
+            </ul>
+          </div>
+        </cdk-accordion-item>
+      }
+    </cdk-accordion>
   </div>
   <div class="w-3/4">
     <div class="flex gap-3 text-xl font-bold text-sky-950 pt-1 pl-3">
