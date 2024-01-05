@@ -24,10 +24,52 @@
         >Home</a>
       </li>
     </ul>
-    <div class="flex w-auto">
-      <div class="text-sm px-4 w-11/12 text-gray-500 font-bold">Workspaces</div>
-      <div class="w-1/12"><fa-icon [icon]="faPlus"></fa-icon></div>
+    <div class="flex w-auto px-2 justify-between mb-5">
+      <div class="text-sm px-4 text-gray-500 font-bold">Workspaces</div>
+      <div ><fa-icon [icon]="faPlus"></fa-icon></div>
     </div>
+    <cdk-accordion>
+      <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+        <button class="w-full py-1 px-2 flex justify-between" type="button" (click)="accordionMenu.toggle()">
+          <p class="px-4 font-semibold text-sky-900">My workspace</p>
+          <fa-icon [icon]="accordionMenu.expanded?faAngleUp:faAngleDown"></fa-icon>
+        </button>
+          <div
+          [ngClass]="{
+            hidden: !accordionMenu.expanded,
+            block: accordionMenu.expanded
+          }"
+          >
+          <ul class="ml-2 flex flex-col text-sm text-gray-700">
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="faTrello"></fa-icon> Boards</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="faHeart"></fa-icon> Highlights</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="faBorderAll"></fa-icon> Views</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="faUsers"></fa-icon> Members</a
+              >
+            </li>
+            <li>
+              <a class="block py-1 px-3"
+                ><fa-icon [icon]="faGear"></fa-icon> Settings</a
+              >
+            </li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
   </div>
   <div class="w-3/4">
     <div class="flex gap-3 text-xl font-bold text-sky-950 pt-1 pl-3">
