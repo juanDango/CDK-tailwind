@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'
+import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop'
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { ToDo } from '../../models/todo.model';
 
@@ -48,28 +48,34 @@ export class BoardComponent {
       id: '5',
       title: 'Task 5'
     },
-    {
-      id: '6',
-      title: 'Task 6'
-    }
   ])
 
   done = signal<ToDo[]>([
     {
       id: '7',
       title: 'Task 7'
-    },
-    {
-      id: '8',
-      title: 'Task 8'
     }
   ])
 
-  drop(event: CdkDragDrop<any[]>) {
-    console.log(event);
-    this.todos.update(prev => {
-      moveItemInArray(prev, event.previousIndex, event.currentIndex)
-      return prev
-    })
-  }
+  drop(event: CdkDragDrop<ToDo[]>) {
+    if (event.previousContainer !== event.container) {
+      // Transfer item to another list
+      console.log(this.todos())
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      console.log(this.todos())
+    } else {
+      // Move item within the same list
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+   }
+
 }
