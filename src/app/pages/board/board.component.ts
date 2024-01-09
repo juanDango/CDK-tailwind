@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop'
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ToDo } from '../../models/todo.model';
+import { Column, ToDo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-board',
@@ -24,38 +24,50 @@ import { ToDo } from '../../models/todo.model';
 })
 export class BoardComponent {
 
-  todos = signal<ToDo[]>([
-    {
-      id: '1',
-      title: 'Task 1'
-    },
-    {
-      id: '2',
-      title: 'Task 2'
-    },
-    {
-      id: '3',
-      title: 'Task 3'
-    }
-  ])
-
-  doing = signal<ToDo[]>([
-    {
-      id: '4',
-      title: 'Task 4'
-    },
-    {
-      id: '5',
-      title: 'Task 5'
-    },
-  ])
-
-  done = signal<ToDo[]>([
-    {
-      id: '7',
-      title: 'Task 7'
-    }
-  ])
+  colums = signal<Column[]>(
+    [
+      {
+        title: 'ToDo',
+        todos: [{
+          id: '1',
+          title: 'Task 1'
+        },
+        {
+          id: '2',
+          title: 'Task 2'
+        },
+        {
+          id: '3',
+          title: 'Task 3'
+        }]
+      },
+      {
+        title: 'Doing',
+        todos: [
+          {
+            id: '4',
+            title: 'Task 4'
+          },
+          {
+            id: '5',
+            title: 'Task 5'
+          }
+        ]
+      },
+      {
+        title: 'Done',
+        todos: [
+          {
+            id: '7',
+            title: 'Task 7'
+          }
+        ]
+      }
+    ]
+  )
+  todos = signal<ToDo[]>([])
+  doing = signal<ToDo[]>([])
+  done = signal<ToDo[]>([])
 
   drop(event: CdkDragDrop<ToDo[]>) {
     if (event.previousContainer !== event.container) {
@@ -76,6 +88,10 @@ export class BoardComponent {
         event.currentIndex
       );
     }
-   }
+  }
+
+  addColumn(){
+    this.colums.update(prev => [...prev, {title: 'new col', todos: []}])
+  }
 
 }
